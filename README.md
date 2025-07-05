@@ -112,9 +112,9 @@ Update the CSS variables in `styles.css`:
 
 Update the following in `index.html`:
 
-- Phone number: `+1 (555) 123-4567`
+- Phone number: `0597458456 / 0506618200`
 - Email: `info@somakologistics.com`
-- Address: `123 Logistics Avenue, Business District, City 12345`
+- Address: `Winneba & Agona Swedru, Central Region, Ghana`
 - Social media links
 
 ## 🔧 Browser Support
