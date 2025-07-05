@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Ko Dashboard</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard-header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .chart-container {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .recent-orders {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .orders-header {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1rem 1.5rem;
+            font-weight: bold;
+        }
+        
+        .order-item {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        
+        .order-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .status-pending {
+            background: #FFF3E0;
+            color: var(--warning);
+        }
+        
+        .status-processing {
+            background: #E3F2FD;
+            color: var(--info);
+        }
+        
+        .status-delivered {
+            background: #E8F5E8;
+            color: var(--success);
+        }
+        
+        .status-cancelled {
+            background: #FFEBEE;
+            color: var(--error);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Soma<span style="color: var(--accent-yellow);">Ko</span></h2>
+            <p>Dashboard</p>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="index.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="inventory.html"><i class="fas fa-boxes"></i> Inventory</a></li>
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+            <li><a href="riders.html"><i class="fas fa-motorcycle"></i> Riders</a></li>
+            <li><a href="vendors.html"><i class="fas fa-store"></i> Vendors</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#" onclick="somaKoAuth.logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="dashboard-header">
+            <h1>Dashboard Overview</h1>
+            <div class="user-info">
+                <span>Welcome, <strong id="user-name">Loading...</strong></span>
+                <button class="btn btn-outline btn-sm" onclick="somaKoAuth.logout()">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </button>
+            </div>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number" id="totalOrders">245</div>
+                <div class="stat-label">Total Orders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="activeRiders">18</div>
+                <div class="stat-label">Active Riders</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="totalVendors">32</div>
+                <div class="stat-label">Total Vendors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="monthlyRevenue">₦125,400</div>
+                <div class="stat-label">Monthly Revenue</div>
+            </div>
+        </div>
+
+        <!-- Charts and Recent Orders -->
+        <div class="grid grid-cols-2 gap-6">
+            <div class="chart-container">
+                <h3 class="mb-4">Weekly Orders</h3>
+                <canvas id="ordersChart" width="400" height="200"></canvas>
+            </div>
+            
+            <div class="recent-orders">
+                <div class="orders-header">Recent Orders</div>
+                <div id="recentOrdersList">
+                    <div class="order-item">
+                        <div>
+                            <strong>#ORD001</strong><br>
+                            <small>Food delivery to VI</small>
+                        </div>
+                        <span class="order-status status-processing">Processing</span>
+                    </div>
+                    <div class="order-item">
+                        <div>
+                            <strong>#ORD002</strong><br>
+                            <small>Pharmacy delivery</small>
+                        </div>
+                        <span class="order-status status-delivered">Delivered</span>
+                    </div>
+                    <div class="order-item">
+                        <div>
+                            <strong>#ORD003</strong><br>
+                            <small>Express package</small>
+                        </div>
+                        <span class="order-status status-pending">Pending</span>
+                    </div>
+                    <div class="order-item">
+                        <div>
+                            <strong>#ORD004</strong><br>
+                            <small>Food delivery to Lekki</small>
+                        </div>
+                        <span class="order-status status-processing">Processing</span>
+                    </div>
+                    <div class="order-item">
+                        <div>
+                            <strong>#ORD005</strong><br>
+                            <small>Pharmacy emergency</small>
+                        </div>
+                        <span class="order-status status-cancelled">Cancelled</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../shared/auth.js"></script>
+    <script>
+        // Check authentication and permissions
+        if (!somaKoAuth.requirePermission('dashboard')) {
+            // This will redirect if user doesn't have permission
+        }
+
+        // Initialize chart
+        const ctx = document.getElementById('ordersChart').getContext('2d');
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Orders',
+                    data: [12, 19, 8, 15, 25, 22, 18],
+                    borderColor: '#2E7D32',
+                    backgroundColor: 'rgba(46, 125, 50, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Role-based content adjustment
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = somaKoAuth.getCurrentUser();
+            if (user) {
+                // Hide certain menu items for riders
+                if (user.role === 'rider') {
+                    const restrictedItems = ['vendors.html', 'reports.html', 'settings.html'];
+                    restrictedItems.forEach(item => {
+                        const link = document.querySelector(`a[href="${item}"]`);
+                        if (link) {
+                            link.parentElement.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        });
+
+        // Live updates simulation
+        function updateStats() {
+            const orders = Math.floor(Math.random() * 50) + 200;
+            const riders = Math.floor(Math.random() * 10) + 15;
+            const vendors = Math.floor(Math.random() * 20) + 25;
+            const revenue = Math.floor(Math.random() * 50000) + 100000;
+
+            document.getElementById('totalOrders').textContent = orders;
+            document.getElementById('activeRiders').textContent = riders;
+            document.getElementById('totalVendors').textContent = vendors;
+            document.getElementById('monthlyRevenue').textContent = `₦${revenue.toLocaleString()}`;
+        }
+
+        // Update stats every 30 seconds
+        setInterval(updateStats, 30000);
+    </script>
+</body>
+</html>

@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Ko Pharmacy - Online Medicine Delivery in Ghana</title>
+    <meta name="description" content="Order prescription medicines and health products online in Ghana. Fast delivery, licensed pharmacists, and 24/7 emergency service in Winneba & Agona Swedru.">
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nexa:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --pharmacy-primary: #0d7377;
+            --pharmacy-secondary: #14a085;
+            --pharmacy-accent: #a2d5ab;
+            --pharmacy-dark: #212529;
+            --pharmacy-light: #e8f5e8;
+        }
+
+        body {
+            font-family: 'Nexa', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--white);
+            color: var(--primary-green);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+        
+        .logo .accent {
+            color: var(--pharmacy-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--pharmacy-primary);
+        }
+
+        .back-btn {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: var(--pharmacy-primary);
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--pharmacy-primary) 0%, var(--pharmacy-secondary) 100%);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="medical-pattern" x="0" y="0" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M12.5 8 L16.5 8 L16.5 12 L20.5 12 L20.5 16 L16.5 16 L16.5 20 L12.5 20 L12.5 16 L8.5 16 L8.5 12 L12.5 12 Z" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23medical-pattern)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .search-bar {
+            background: var(--white);
+            padding: 2.5rem;
+            margin: -3rem auto 0;
+            max-width: 700px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            border: 2px solid #e9ecef;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            min-width: 250px;
+        }
+
+        .search-btn {
+            background: var(--pharmacy-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background: var(--pharmacy-secondary);
+            transform: translateY(-2px);
+        }
+
+        .upload-section {
+            background: var(--pharmacy-light);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .upload-btn {
+            background: var(--pharmacy-accent);
+            color: var(--pharmacy-dark);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .upload-btn:hover {
+            background: var(--pharmacy-secondary);
+            color: white;
+        }
+
+        .features-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--pharmacy-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--pharmacy-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--pharmacy-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .categories-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            background: var(--pharmacy-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .category-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .category-name {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--pharmacy-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .emergency-section {
+            background: linear-gradient(135deg, #dc3545 0%, #bd2130 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .emergency-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .emergency-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .emergency-btn {
+            background: white;
+            color: #dc3545;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--pharmacy-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            background: var(--pharmacy-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--pharmacy-accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--pharmacy-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-input {
+                min-width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                Soma Ko <span class="accent">Pharmacy</span>
+            </div>
+            <div class="nav-links">
+                <a href="#categories">Categories</a>
+                <a href="#features">Services</a>
+                <a href="#emergency">Emergency</a>
+                <a href="../shared/login.html" class="back-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Main
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Your Health, Our Priority</h1>
+            <p>Order prescription medicines and health products online. Licensed pharmacists, fast delivery, and 24/7 emergency service in Winneba & Agona Swedru.</p>
+        </div>
+    </section>
+
+    <!-- Search Bar -->
+    <div class="container">
+        <div class="search-bar">
+            <form class="search-form">
+                <input type="text" class="search-input" placeholder="Search for medicines, supplements, or health products...">
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> Search
+                </button>
+            </form>
+            <div class="upload-section">
+                <h3 style="margin-bottom: 1rem; color: var(--pharmacy-dark);">Have a Prescription?</h3>
+                <p style="margin-bottom: 1.5rem; color: #666;">Upload your prescription and our licensed pharmacists will prepare your order</p>
+                <button class="upload-btn">
+                    <i class="fas fa-upload"></i> Upload Prescription
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Soma Ko Pharmacy?</h2>
+                <p>Trusted healthcare solutions delivered to your doorstep</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <h3>Licensed Pharmacists</h3>
+                    <p>All medications are verified and dispensed by qualified, licensed pharmacists ensuring safety and authenticity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck-medical"></i>
+                    </div>
+                    <h3>Fast Delivery</h3>
+                    <p>Get your medicines delivered within 30-60 minutes for emergency orders or scheduled delivery at your convenience.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <h3>Authentic Medicines</h3>
+                    <p>We source all medications from authorized distributors and manufacturers, guaranteeing 100% authentic products.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>24/7 Emergency Service</h3>
+                    <p>Round-the-clock emergency medication delivery for critical prescriptions and urgent health needs.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>Consultation Available</h3>
+                    <p>Free phone consultations with our pharmacists for medication guidance and health advice.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Secure Payments</h3>
+                    <p>Multiple payment options including mobile money, cards, and cash on delivery with secure transaction processing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section" id="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Medicine Categories</h2>
+                <p>Browse our comprehensive range of healthcare products</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">💊</div>
+                    <div class="category-name">Prescription Medicines</div>
+                    <div class="category-description">Doctor-prescribed medications for various health conditions</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🩹</div>
+                    <div class="category-name">Over-the-Counter</div>
+                    <div class="category-description">Pain relievers, cold medicines, and general health products</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🍯</div>
+                    <div class="category-name">Supplements</div>
+                    <div class="category-description">Vitamins, minerals, and nutritional supplements</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🤱</div>
+                    <div class="category-name">Baby Care</div>
+                    <div class="category-description">Formula, diapers, and baby health products</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">💄</div>
+                    <div class="category-name">Personal Care</div>
+                    <div class="category-description">Skincare, hygiene, and beauty products</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🩺</div>
+                    <div class="category-name">Medical Devices</div>
+                    <div class="category-description">Thermometers, blood pressure monitors, and health devices</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🌿</div>
+                    <div class="category-name">Herbal & Natural</div>
+                    <div class="category-description">Traditional medicines and natural health products</div>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">🦷</div>
+                    <div class="category-name">Dental Care</div>
+                    <div class="category-description">Toothpaste, mouthwash, and oral health products</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Emergency Section -->
+    <section class="emergency-section" id="emergency">
+        <div class="container">
+            <h2>Emergency Medicine Delivery</h2>
+            <p>Need urgent medication? Our emergency delivery service is available 24/7 for critical prescriptions and health emergencies.</p>
+            <a href="tel:0597458456" class="emergency-btn">
+                <i class="fas fa-phone"></i> Call Emergency Line: 0597458456
+            </a>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Start Your Health Journey</h2>
+            <p>Join thousands of customers who trust Soma Ko Pharmacy for their healthcare needs</p>
+            <div class="cta-buttons">
+                <a href="../shared/login.html" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </a>
+                <a href="../soma-ko-foods/index.html" class="btn btn-secondary">
+                    <i class="fas fa-utensils"></i> Order Food
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Soma Ko Pharmacy</h4>
+                    <p>Your trusted online pharmacy providing authentic medicines and healthcare products with licensed pharmacist consultation.</p>
+                    <div style="margin-top: 1rem;">
+                        <i class="fas fa-phone"></i> 0597458456 / 0506618200<br>
+                        <i class="fas fa-envelope"></i> pharmacy@somakologistics.com<br>
+                        <i class="fas fa-clock"></i> 24/7 Emergency Service
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#categories">Medicine Categories</a></li>
+                        <li><a href="#">Prescription Upload</a></li>
+                        <li><a href="#emergency">Emergency Delivery</a></li>
+                        <li><a href="#">Pharmacist Consultation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Customer Care</h4>
+                    <ul>
+                        <li><a href="../shared/login.html">Track Your Order</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Return Policy</a></li>
+                        <li><a href="#">Health Blog</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="../soma-ko-dashboard/index.html">Business Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Soma Ko Pharmacy. Part of Soma Ko Logistics. All rights reserved. | Licensed by Ghana Pharmacy Council</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Search form handling
+        document.querySelector('.search-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Medicine search functionality coming soon! Please login to browse our catalog.');
+        });
+
+        // Upload prescription button
+        document.querySelector('.upload-btn').addEventListener('click', function() {
+            alert('Prescription upload feature coming soon! Please call our pharmacy for urgent prescriptions: 0597458456');
+        });
+
+        // Category card clicks
+        document.querySelectorAll('.category-card').forEach(card => {
+            card.addEventListener('click', function() {
+                alert('Category browsing coming soon! Please login to view products.');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inventory Management - Soma Ko Dashboard</title>
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .inventory-header {
+            background: var(--white);
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .search-filter-bar {
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+        
+        .search-input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+        }
+        
+        .inventory-table {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .table-header {
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 1rem;
+            font-weight: bold;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .stock-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .stock-in {
+            background: #E8F5E8;
+            color: var(--success);
+        }
+        
+        .stock-low {
+            background: #FFF3E0;
+            color: var(--warning);
+        }
+        
+        .stock-out {
+            background: #FFEBEE;
+            color: var(--error);
+        }
+        
+        .product-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2>Soma<span style="color: var(--accent-yellow);">Ko</span></h2>
+            <p>Dashboard</p>
+        </div>
+        <ul class="sidebar-nav">
+            <li><a href="index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="inventory.html" class="active"><i class="fas fa-boxes"></i> Inventory</a></li>
+            <li><a href="orders.html"><i class="fas fa-shopping-cart"></i> Orders</a></li>
+            <li><a href="riders.html"><i class="fas fa-motorcycle"></i> Riders</a></li>
+            <li><a href="vendors.html"><i class="fas fa-store"></i> Vendors</a></li>
+            <li><a href="reports.html"><i class="fas fa-chart-bar"></i> Reports</a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+            <li><a href="#" onclick="somaKoAuth.logout()"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="inventory-header">
+            <h1>Inventory Management</h1>
+            <button class="btn btn-primary" onclick="openProductModal()">
+                <i class="fas fa-plus"></i> Add Product
+            </button>
+        </div>
+
+        <!-- Search and Filter Bar -->
+        <div class="search-filter-bar">
+            <input type="text" class="search-input" placeholder="Search products..." id="searchInput">
+            <select class="form-select" id="categoryFilter" style="width: 200px;">
+                <option value="">All Categories</option>
+                <option value="food">Food</option>
+                <option value="pharmacy">Pharmacy</option>
+                <option value="general">General</option>
+            </select>
+            <select class="form-select" id="statusFilter" style="width: 150px;">
+                <option value="">All Status</option>
+                <option value="in-stock">In Stock</option>
+                <option value="low-stock">Low Stock</option>
+                <option value="out-of-stock">Out of Stock</option>
+            </select>
+        </div>
+
+        <!-- Inventory Table -->
+        <div class="inventory-table">
+            <div class="table-header">Product Inventory</div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Category</th>
+                        <th>SKU</th>
+                        <th>Stock</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="inventoryTableBody">
+                    <!-- Products will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add Product</h3>
+                <button class="modal-close" onclick="closeProductModal()">&times;</button>
+            </div>
+            <form id="productForm">
+                <div class="form-group">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" id="productName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Category</label>
+                    <select id="productCategory" class="form-select" required>
+                        <option value="">Select Category</option>
+                        <option value="food">Food</option>
+                        <option value="pharmacy">Pharmacy</option>
+                        <option value="general">General</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">SKU</label>
+                    <input type="text" id="productSKU" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Stock Quantity</label>
+                    <input type="number" id="productStock" class="form-input" required min="0">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Price (₦)</label>
+                    <input type="number" id="productPrice" class="form-input" required min="0" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Description</label>
+                    <textarea id="productDescription" class="form-input" rows="3"></textarea>
+                </div>
+                <div class="flex gap-4">
+                    <button type="submit" class="btn btn-primary">Save Product</button>
+                    <button type="button" class="btn btn-outline" onclick="closeProductModal()">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="../shared/auth.js"></script>
+    <script>
+        // Check authentication and permissions
+        if (!somaKoAuth.requirePermission('inventory')) {
+            // This will redirect if user doesn't have permission
+        }
+
+        // Sample inventory data
+        let inventory = [
+            {
+                id: 1,
+                name: "Jollof Rice",
+                category: "food",
+                sku: "FOOD001",
+                stock: 25,
+                price: 1500,
+                description: "Nigerian jollof rice",
+                image: "https://via.placeholder.com/50"
+            },
+            {
+                id: 2,
+                name: "Paracetamol",
+                category: "pharmacy",
+                sku: "PHARM001",
+                stock: 5,
+                price: 200,
+                description: "Pain relief medication",
+                image: "https://via.placeholder.com/50"
+            },
+            {
+                id: 3,
+                name: "Fried Rice",
+                category: "food",
+                sku: "FOOD002",
+                stock: 15,
+                price: 1800,
+                description: "Nigerian fried rice",
+                image: "https://via.placeholder.com/50"
+            },
+            {
+                id: 4,
+                name: "Vitamins C",
+                category: "pharmacy",
+                sku: "PHARM002",
+                stock: 0,
+                price: 500,
+                description: "Vitamin C supplements",
+                image: "https://via.placeholder.com/50"
+            },
+            {
+                id: 5,
+                name: "Office Supplies",
+                category: "general",
+                sku: "GEN001",
+                stock: 50,
+                price: 2500,
+                description: "Various office supplies",
+                image: "https://via.placeholder.com/50"
+            }
+        ];
+
+        let editingProduct = null;
+
+        // Load inventory table
+        function loadInventory() {
+            const tbody = document.getElementById('inventoryTableBody');
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const categoryFilter = document.getElementById('categoryFilter').value;
+            const statusFilter = document.getElementById('statusFilter').value;
+
+            let filteredInventory = inventory.filter(product => {
+                const matchesSearch = product.name.toLowerCase().includes(searchTerm) || 
+                                    product.sku.toLowerCase().includes(searchTerm);
+                const matchesCategory = !categoryFilter || product.category === categoryFilter;
+                
+                let matchesStatus = true;
+                if (statusFilter) {
+                    const status = getStockStatus(product.stock);
+                    matchesStatus = status.class === `stock-${statusFilter.replace('-stock', '')}`;
+                }
+
+                return matchesSearch && matchesCategory && matchesStatus;
+            });
+
+            tbody.innerHTML = filteredInventory.map(product => {
+                const status = getStockStatus(product.stock);
+                return `
+                    <tr>
+                        <td><img src="${product.image}" alt="${product.name}" class="product-image"></td>
+                        <td><strong>${product.name}</strong></td>
+                        <td><span class="capitalize">${product.category}</span></td>
+                        <td>${product.sku}</td>
+                        <td>${product.stock}</td>
+                        <td>₦${product.price.toLocaleString()}</td>
+                        <td><span class="stock-status ${status.class}">${status.text}</span></td>
+                        <td>
+                            <div class="action-buttons">
+                                <button class="btn btn-sm btn-outline" onclick="editProduct(${product.id})">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn btn-sm btn-danger" onclick="deleteProduct(${product.id})">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // Get stock status
+        function getStockStatus(stock) {
+            if (stock === 0) {
+                return { class: 'stock-out', text: 'Out of Stock' };
+            } else if (stock <= 10) {
+                return { class: 'stock-low', text: 'Low Stock' };
+            } else {
+                return { class: 'stock-in', text: 'In Stock' };
+            }
+        }
+
+        // Open product modal
+        function openProductModal(product = null) {
+            const modal = document.getElementById('productModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const form = document.getElementById('productForm');
+
+            if (product) {
+                modalTitle.textContent = 'Edit Product';
+                document.getElementById('productName').value = product.name;
+                document.getElementById('productCategory').value = product.category;
+                document.getElementById('productSKU').value = product.sku;
+                document.getElementById('productStock').value = product.stock;
+                document.getElementById('productPrice').value = product.price;
+                document.getElementById('productDescription').value = product.description || '';
+                editingProduct = product;
+            } else {
+                modalTitle.textContent = 'Add Product';
+                form.reset();
+                editingProduct = null;
+            }
+
+            modal.style.display = 'block';
+        }
+
+        // Close product modal
+        function closeProductModal() {
+            document.getElementById('productModal').style.display = 'none';
+            editingProduct = null;
+        }
+
+        // Edit product
+        function editProduct(id) {
+            const product = inventory.find(p => p.id === id);
+            if (product) {
+                openProductModal(product);
+            }
+        }
+
+        // Delete product
+        function deleteProduct(id) {
+            if (confirm('Are you sure you want to delete this product?')) {
+                inventory = inventory.filter(p => p.id !== id);
+                loadInventory();
+            }
+        }
+
+        // Handle form submission
+        document.getElementById('productForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const formData = {
+                name: document.getElementById('productName').value,
+                category: document.getElementById('productCategory').value,
+                sku: document.getElementById('productSKU').value,
+                stock: parseInt(document.getElementById('productStock').value),
+                price: parseFloat(document.getElementById('productPrice').value),
+                description: document.getElementById('productDescription').value,
+                image: "https://via.placeholder.com/50"
+            };
+
+            if (editingProduct) {
+                // Update existing product
+                const index = inventory.findIndex(p => p.id === editingProduct.id);
+                if (index !== -1) {
+                    inventory[index] = { ...inventory[index], ...formData };
+                }
+            } else {
+                // Add new product
+                const newProduct = {
+                    id: Date.now(),
+                    ...formData
+                };
+                inventory.push(newProduct);
+            }
+
+            closeProductModal();
+            loadInventory();
+        });
+
+        // Search and filter handlers
+        document.getElementById('searchInput').addEventListener('input', loadInventory);
+        document.getElementById('categoryFilter').addEventListener('change', loadInventory);
+        document.getElementById('statusFilter').addEventListener('change', loadInventory);
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('productModal');
+            if (e.target === modal) {
+                closeProductModal();
+            }
+        });
+
+        // Role-based access
+        document.addEventListener('DOMContentLoaded', () => {
+            const user = somaKoAuth.getCurrentUser();
+            if (user && user.role === 'rider') {
+                // Riders can only view, not edit
+                document.querySelector('.inventory-header button').style.display = 'none';
+            }
+            
+            loadInventory();
+        });
+    </script>
+</body>
+</html>

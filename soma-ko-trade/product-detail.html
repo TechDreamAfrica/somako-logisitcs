@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Soma Ko Trade</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../images/soma-ko-logo.png" alt="Soma Ko" onerror="this.outerHTML='<span style=\'font-size: 1.5rem; font-weight: bold; color: var(--primary-green);\'>Soma Ko</span>'">
+                </a>
+            </div>
+
+            <!-- Search Bar -->
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search products, categories, sellers...">
+                    <button class="search-btn" onclick="searchProducts()">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Soma Ko Trade</a>
+                <a href="../soma-ko-pay/index.html">Soma Ko Pay</a>
+                <a href="../soma-ko-delivery/index.html">Delivery</a>
+                <a href="../contact.html">Contact</a>
+                
+                <!-- Cart Icon -->
+                <div class="nav-cart">
+                    <a href="#" class="cart-icon" onclick="toggleCart()">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile menu toggle -->
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">Home</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="index.html">Soma Ko Trade</a>
+            <i class="fas fa-chevron-right"></i>
+            <a href="products.html">Products</a>
+            <i class="fas fa-chevron-right"></i>
+            <span id="productBreadcrumb">Product Details</span>
+        </div>
+    </div>
+
+    <!-- Product Detail Section -->
+    <section class="product-detail-section">
+        <div class="container">
+            <div id="productDetailContent" class="product-detail-content">
+                <!-- Loading state -->
+                <div id="productLoading" class="loading-state">
+                    <div class="spinner"></div>
+                    <p>Loading product details...</p>
+                </div>
+
+                <!-- Product not found -->
+                <div id="productNotFound" class="product-not-found" style="display: none;">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h2>Product Not Found</h2>
+                    <p>The product you're looking for doesn't exist or has been removed.</p>
+                    <a href="products.html" class="btn btn-primary">Browse All Products</a>
+                </div>
+
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products Section -->
+    <section class="related-products-section">
+        <div class="container">
+            <h2>Related Products</h2>
+            <div id="relatedProductsGrid" class="products-grid">
+                <!-- Related products will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="cart-content">
+            <div id="cartItems" class="cart-items">
+                <!-- Cart items will be dynamically loaded -->
+            </div>
+            
+            <div class="cart-footer">
+                <div class="cart-total">
+                    <span>Total: GH₵ <span id="cartTotal">0</span></span>
+                </div>
+                <button class="btn btn-primary" onclick="proceedToCheckout()">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div id="cartOverlay" class="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="modal-close" onclick="closeImageModal()">&times;</span>
+            <img id="modalImage" src="" alt="Product Image">
+            <div class="image-navigation">
+                <button class="nav-btn prev-btn" onclick="previousImage()">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="nav-btn next-btn" onclick="nextImage()">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soma Ko Trade</h3>
+                    <p>Your trusted marketplace for buying and selling across Ghana.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="seller-dashboard.html">Sell on Soma Ko</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Categories</h4>
+                    <ul>
+                        <li><a href="products.html?category=electronics">Electronics</a></li>
+                        <li><a href="products.html?category=fashion">Fashion</a></li>
+                        <li><a href="products.html?category=home">Home & Garden</a></li>
+                        <li><a href="products.html?category=beauty">Beauty</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../help.html">Help Center</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../contact.html">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Soma Ko. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="product-detail.js"></script>
+</body>
+</html>

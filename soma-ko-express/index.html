@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Ko Express - Join Our Delivery Team in Ghana</title>
+    <meta name="description" content="Become a delivery rider with Soma Ko Express. Flexible hours, competitive pay, and the freedom to earn on your schedule in Winneba & Agona Swedru.">
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nexa:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --express-primary: #1e3d59;
+            --express-secondary: #00bcd4;
+            --express-accent: #ffc107;
+            --express-dark: #0f2027;
+            --express-light: #e3f2fd;
+        }
+
+        body {
+            font-family: 'Nexa', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--white);
+            color: var(--primary-green);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+        
+        .logo .accent {
+            color: var(--express-secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--express-secondary);
+        }
+
+        .back-btn {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: var(--express-secondary);
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--express-primary) 0%, var(--express-secondary) 100%);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="bike-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M15 5 L25 15 L15 25 L5 15 Z" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23bike-pattern)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--express-accent);
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+
+        .application-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--express-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .application-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--express-dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--express-secondary);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .submit-btn {
+            background: var(--express-secondary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: var(--express-primary);
+            transform: translateY(-2px);
+        }
+
+        .benefits-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .benefit-card {
+            background: var(--express-light);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            font-size: 3rem;
+            color: var(--express-secondary);
+            margin-bottom: 1.5rem;
+        }
+
+        .benefit-card h3 {
+            font-size: 1.5rem;
+            color: var(--express-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .requirements-section {
+            padding: 6rem 0;
+            background: var(--express-light);
+        }
+
+        .requirements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .requirement-item {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .requirement-icon {
+            font-size: 2rem;
+            color: var(--express-secondary);
+            flex-shrink: 0;
+        }
+
+        .requirement-text {
+            font-weight: 500;
+            color: var(--express-dark);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--express-secondary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            background: var(--express-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--express-secondary);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--express-secondary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-stats {
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                Soma Ko <span class="accent">Express</span>
+            </div>
+            <div class="nav-links">
+                <a href="#benefits">Benefits</a>
+                <a href="#requirements">Requirements</a>
+                <a href="#apply">Apply Now</a>
+                <a href="../shared/login.html" class="back-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Main
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Drive. Deliver. Earn.</h1>
+            <p>Join Ghana's fastest-growing delivery network. Be your own boss with flexible hours and competitive earnings in Winneba & Agona Swedru.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">₵200+</span>
+                    <div class="stat-label">Daily Earnings Potential</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <div class="stat-label">Active Riders</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">Flexible Schedule</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits-section" id="benefits">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Ride With Soma Ko Express?</h2>
+                <p>Discover the benefits of joining Ghana's premier delivery team</p>
+            </div>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <h3>Flexible Hours</h3>
+                    <p>Work when you want, where you want. Choose your own schedule and maintain perfect work-life balance.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Competitive Pay</h3>
+                    <p>Earn up to ₵200+ per day with our competitive commission structure and bonus incentives.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Easy-to-Use App</h3>
+                    <p>Intuitive rider app with GPS navigation, earnings tracking, and instant payment processing.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Insurance Coverage</h3>
+                    <p>Comprehensive insurance coverage while on duty, including accident and liability protection.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community Support</h3>
+                    <p>Join a supportive community of riders with 24/7 customer support and rider assistance.</p>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Growth Opportunities</h3>
+                    <p>Advance to team leader, training roles, or explore other opportunities within Soma Ko Logistics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Requirements Section -->
+    <section class="requirements-section" id="requirements">
+        <div class="container">
+            <div class="section-header">
+                <h2>Rider Requirements</h2>
+                <p>Simple requirements to get started on your delivery journey</p>
+            </div>
+            <div class="requirements-grid">
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <div class="requirement-text">Valid Ghana ID or Passport</div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <div class="requirement-text">Own motorcycle or bicycle</div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="requirement-text">Valid driver's license</div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="requirement-text">Smartphone with internet</div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-calendar"></i>
+                    </div>
+                    <div class="requirement-text">Minimum age 18 years</div>
+                </div>
+                <div class="requirement-item">
+                    <div class="requirement-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="requirement-text">Local area knowledge</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Section -->
+    <section class="application-section" id="apply">
+        <div class="container">
+            <div class="section-header">
+                <h2>Apply to Become a Rider</h2>
+                <p>Start your journey with Soma Ko Express today</p>
+            </div>
+            <form class="application-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone Number *</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city">City *</label>
+                        <select id="city" name="city" required>
+                            <option value="">Select City</option>
+                            <option value="winneba">Winneba</option>
+                            <option value="agona-swedru">Agona Swedru</option>
+                            <option value="cape-coast">Cape Coast</option>
+                            <option value="kasoa">Kasoa</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="vehicle">Vehicle Type *</label>
+                        <select id="vehicle" name="vehicle" required>
+                            <option value="">Select Vehicle</option>
+                            <option value="motorcycle">Motorcycle</option>
+                            <option value="bicycle">Bicycle</option>
+                            <option value="scooter">Scooter</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experience">Delivery Experience</label>
+                    <select id="experience" name="experience">
+                        <option value="">Select Experience Level</option>
+                        <option value="none">No experience</option>
+                        <option value="1-6months">1-6 months</option>
+                        <option value="6months-1year">6 months - 1 year</option>
+                        <option value="1year+">More than 1 year</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="availability">Preferred Working Hours</label>
+                    <select id="availability" name="availability">
+                        <option value="">Select Availability</option>
+                        <option value="morning">Morning (6AM - 12PM)</option>
+                        <option value="afternoon">Afternoon (12PM - 6PM)</option>
+                        <option value="evening">Evening (6PM - 12AM)</option>
+                        <option value="flexible">Flexible / All hours</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="motivation">Why do you want to join Soma Ko Express?</label>
+                    <textarea id="motivation" name="motivation" rows="4" placeholder="Tell us about your motivation and goals..."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-paper-plane"></i> Submit Application
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Earning?</h2>
+            <p>Join hundreds of riders who are already making money with Soma Ko Express</p>
+            <div class="cta-buttons">
+                <a href="#apply" class="btn btn-primary">
+                    <i class="fas fa-user-plus"></i> Apply Now
+                </a>
+                <a href="../soma-ko-foods/index.html" class="btn btn-secondary">
+                    <i class="fas fa-utensils"></i> Order Food
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Soma Ko Express</h4>
+                    <p>Join Ghana's premier delivery network and start earning today with flexible hours and competitive pay.</p>
+                    <div style="margin-top: 1rem;">
+                        <i class="fas fa-phone"></i> 0597458456 / 0506618200<br>
+                        <i class="fas fa-envelope"></i> riders@somakologistics.com
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>For Riders</h4>
+                    <ul>
+                        <li><a href="#apply">Apply Now</a></li>
+                        <li><a href="../shared/login.html">Rider Portal</a></li>
+                        <li><a href="#">Earnings Calculator</a></li>
+                        <li><a href="#">Support Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="#">Rider Training</a></li>
+                        <li><a href="#">Safety Guidelines</a></li>
+                        <li><a href="#">Insurance Info</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="../soma-ko-dashboard/index.html">Business Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Soma Ko Express. Part of Soma Ko Logistics. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Application form handling
+        document.querySelector('.application-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic form validation
+            const requiredFields = this.querySelectorAll('input[required], select[required]');
+            let allValid = true;
+            
+            requiredFields.forEach(field => {
+                if (!field.value.trim()) {
+                    allValid = false;
+                    field.style.borderColor = '#dc3545';
+                } else {
+                    field.style.borderColor = '#e9ecef';
+                }
+            });
+            
+            if (allValid) {
+                alert('Thank you for your application! We will review your submission and contact you within 2-3 business days.');
+                this.reset();
+            } else {
+                alert('Please fill in all required fields.');
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

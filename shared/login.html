@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Ko Logistics - Login</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--secondary-green) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .login-container {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .logo {
+            color: var(--primary-green);
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+        
+        .logo .accent {
+            color: var(--accent-yellow);
+        }
+        
+        .subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+        
+        .service-selection {
+            margin-bottom: 2rem;
+        }
+        
+        .service-options {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-option {
+            padding: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--white);
+        }
+        
+        .service-option:hover {
+            border-color: var(--primary-green);
+        }
+        
+        .service-option.active {
+            border-color: var(--primary-green);
+            background: var(--light-yellow);
+        }
+        
+        .service-option i {
+            font-size: 2rem;
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-option span {
+            display: block;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        
+        .login-form {
+            margin-bottom: 2rem;
+        }
+        
+        .demo-credentials {
+            background: var(--light-gray);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 0.875rem;
+        }
+        
+        .demo-credentials h4 {
+            color: var(--primary-green);
+            margin-bottom: 0.5rem;
+        }
+        
+        .demo-list {
+            list-style: none;
+        }
+        
+        .demo-list li {
+            margin-bottom: 0.25rem;
+            color: var(--text-light);
+        }
+        
+        .error-message {
+            color: var(--error);
+            background: #FFEBEE;
+            padding: 0.75rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            text-align: center;
+            margin-top: 2rem;
+        }
+        
+        .footer-links a {
+            color: var(--primary-green);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <h1 class="logo">Soma<span class="accent">Ko</span></h1>
+            <p class="subtitle">Choose your service and login</p>
+        </div>
+
+        <div class="service-selection">
+            <div class="service-options">
+                <div class="service-option" data-service="dashboard">
+                    <i class="fas fa-tachometer-alt"></i>
+                    <span>Dashboard</span>
+                </div>
+                <div class="service-option" data-service="foods">
+                    <i class="fas fa-utensils"></i>
+                    <span>Foods</span>
+                </div>
+                <div class="service-option" data-service="express">
+                    <i class="fas fa-truck"></i>
+                    <span>Express</span>
+                </div>
+                <div class="service-option" data-service="pharmacy">
+                    <i class="fas fa-pills"></i>
+                    <span>Pharmacy</span>
+                </div>
+            </div>
+        </div>
+
+        <form class="login-form" id="loginForm">
+            <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <input type="email" id="email" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <input type="password" id="password" class="form-input" required>
+            </div>
+
+            <div id="errorMessage" class="error-message hidden"></div>
+
+            <button type="submit" class="btn btn-primary w-full">Login</button>
+        </form>
+
+        <div class="demo-credentials">
+            <h4>Demo Credentials:</h4>
+            <ul class="demo-list">
+                <li><strong>Admin:</strong> admin@somako.com / admin123</li>
+                <li><strong>Rider:</strong> rider@somako.com / rider123</li>
+                <li><strong>Vendor:</strong> vendor@somako.com / vendor123</li>
+                <li><strong>Pharmacy:</strong> pharmacy@somako.com / pharmacy123</li>
+            </ul>
+        </div>
+
+        <div class="footer-links">
+            <a href="../landing/index.html">← Back to Home</a>
+            <a href="#">Forgot Password?</a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script>
+        let selectedService = 'dashboard';
+
+        // Service selection
+        document.querySelectorAll('.service-option').forEach(option => {
+            option.addEventListener('click', () => {
+                document.querySelectorAll('.service-option').forEach(opt => opt.classList.remove('active'));
+                option.classList.add('active');
+                selectedService = option.dataset.service;
+            });
+        });
+
+        // Set default selection
+        document.querySelector('.service-option[data-service="dashboard"]').classList.add('active');
+
+        // Login form handling
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const errorDiv = document.getElementById('errorMessage');
+
+            if (!selectedService) {
+                showError('Please select a service');
+                return;
+            }
+
+            const result = somaKoAuth.login(email, password, selectedService);
+            
+            if (result.success) {
+                somaKoAuth.redirectToDashboard();
+            } else {
+                showError(result.message);
+            }
+        });
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            
+            setTimeout(() => {
+                errorDiv.classList.add('hidden');
+            }, 5000);
+        }
+
+        // Auto-fill demo credentials
+        document.querySelectorAll('.demo-list li').forEach(item => {
+            item.addEventListener('click', () => {
+                const text = item.textContent;
+                const emailMatch = text.match(/(\w+@\w+\.\w+)/);
+                const passwordMatch = text.match(/(\w+123)/);
+                
+                if (emailMatch && passwordMatch) {
+                    document.getElementById('email').value = emailMatch[1];
+                    document.getElementById('password').value = passwordMatch[1];
+                }
+            });
+        });
+    </script>
+</body>
+</html>

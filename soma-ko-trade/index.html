@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Ko Trade - Ghana's Premier E-commerce Platform</title>
+    <meta name="description" content="Buy and sell products online in Ghana with Soma Ko Trade. Complete e-commerce platform with secure payments, fast delivery, and pre-order options.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nexa:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>Soma Ko <span>Trade</span></h2>
+            </div>
+            <div class="nav-search">
+                <div class="search-container">
+                    <input type="text" placeholder="Search products..." id="searchInput">
+                    <button class="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="products.html" class="nav-link">All Products</a></li>
+                <li><a href="#categories" class="nav-link">Categories</a></li>
+                <li><a href="seller-dashboard.html" class="nav-link">Become a Seller</a></li>
+                <li><a href="#preorder" class="nav-link">Pre-Order</a></li>
+                <li class="nav-cart">
+                    <a href="#cart" class="cart-icon" onclick="toggleCart(); return false;">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Ghana's Complete E-commerce Marketplace</h1>
+                <p>Buy and sell anything online with Soma Ko Trade. From electronics to fashion, find everything you need or start your own online business today.</p>
+                <div class="hero-buttons">
+                    <a href="products.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
+                    </a>
+                    <a href="seller-dashboard.html" class="btn btn-secondary">
+                        <i class="fas fa-store"></i> Start Selling
+                    </a>
+                </div>
+                <div class="hero-features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure Payments</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-truck"></i>
+                        <span>Fast Delivery</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Pre-Order Available</span>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="shopping-illustration">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section id="categories" class="categories">
+        <div class="container">
+            <div class="section-header">
+                <h2>Shop by Category</h2>
+                <p>Discover products across all categories</p>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card" onclick="window.location.href='products.html?category=electronics'">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h3>Electronics</h3>
+                    <p>Phones, Laptops, Gadgets</p>
+                    <span class="product-count">2,450+ items</span>
+                </div>
+                <div class="category-card" onclick="window.location.href='products.html?category=fashion'">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h3>Fashion</h3>
+                    <p>Clothing, Shoes, Accessories</p>
+                    <span class="product-count">1,890+ items</span>
+                </div>
+                <div class="category-card" onclick="window.location.href='products.html?category=home'">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Home & Garden</h3>
+                    <p>Furniture, Decor, Tools</p>
+                    <span class="product-count">1,250+ items</span>
+                </div>
+                <div class="category-card" onclick="window.location.href='products.html?category=beauty'">
+                    <div class="category-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Beauty</h3>
+                    <p>Skincare, Makeup, Health</p>
+                    <span class="product-count">890+ items</span>
+                </div>
+                <div class="category-card" onclick="window.location.href='products.html?category=sports'">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h3>Sports</h3>
+                    <p>Equipment, Clothing, Gear</p>
+                    <span class="product-count">650+ items</span>
+                </div>
+                <div class="category-card" onclick="window.location.href='products.html'">
+                    <div class="category-icon">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+                    <h3>More</h3>
+                    <p>Books, Automotive, Etc.</p>
+                    <span class="product-count">View All</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section id="products" class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Products</h2>
+                <p>Hand-picked products just for you</p>
+            </div>
+            <div class="product-filters">
+                <button class="filter-btn active" data-filter="all">All Products</button>
+                <button class="filter-btn" data-filter="trending">Trending</button>
+                <button class="filter-btn" data-filter="new">New Arrivals</button>
+                <button class="filter-btn" data-filter="sale">On Sale</button>
+            </div>
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here dynamically -->
+            </div>
+            <div class="load-more">
+                <button class="btn btn-secondary" id="loadMoreBtn">Load More Products</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pre-Order Section -->
+    <section id="preorder" class="preorder-section">
+        <div class="container">
+            <div class="preorder-content">
+                <div class="preorder-text">
+                    <h2>Can't Find What You're Looking For?</h2>
+                    <p>Use our Pre-Order feature to request any product. We'll source it for you and notify you when it's available.</p>
+                    <div class="preorder-features">
+                        <div class="feature">
+                            <i class="fas fa-search"></i>
+                            <span>Product Sourcing</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-bell"></i>
+                            <span>Instant Notifications</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-lock"></i>
+                            <span>Price Lock Guarantee</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="preOrderBtn">
+                        <i class="fas fa-clock"></i> Create Pre-Order
+                    </button>
+                </div>
+                <div class="preorder-image">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Seller Section -->
+    <section id="sell" class="seller-section">
+        <div class="container">
+            <div class="seller-content">
+                <div class="seller-text">
+                    <h2>Start Your Online Business Today</h2>
+                    <p>Join thousands of successful sellers on Soma Ko Trade. Easy setup, powerful tools, and dedicated support to grow your business.</p>
+                    <div class="seller-benefits">
+                        <div class="benefit">
+                            <i class="fas fa-chart-line"></i>
+                            <div>
+                                <h4>Boost Your Sales</h4>
+                                <p>Reach millions of customers across Ghana</p>
+                            </div>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-tools"></i>
+                            <div>
+                                <h4>Easy Management</h4>
+                                <p>Powerful dashboard to manage inventory and orders</p>
+                            </div>
+                        </div>
+                        <div class="benefit">
+                            <i class="fas fa-headset"></i>
+                            <div>
+                                <h4>24/7 Support</h4>
+                                <p>Dedicated seller support team</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" id="becomeSellerBtn">
+                        <i class="fas fa-store"></i> Become a Seller
+                    </button>
+                </div>
+                <div class="seller-image">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">50,000+</div>
+                    <div class="stat-label">Products Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">10,000+</div>
+                    <div class="stat-label">Active Sellers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100,000+</div>
+                    <div class="stat-label">Happy Customers</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">98%</div>
+                    <div class="stat-label">Customer Satisfaction</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soma Ko <span>Trade</span></h3>
+                    <p>Ghana's leading e-commerce platform for buying and selling products online.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Shop</h4>
+                    <ul>
+                        <li><a href="#categories">All Categories</a></li>
+                        <li><a href="#products">Featured Products</a></li>
+                        <li><a href="#preorder">Pre-Order</a></li>
+                        <li><a href="#deals">Daily Deals</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Sell</h4>
+                    <ul>
+                        <li><a href="#sell">Become a Seller</a></li>
+                        <li><a href="seller-dashboard.html">Seller Dashboard</a></li>
+                        <li><a href="seller-guide.html">Seller Guide</a></li>
+                        <li><a href="seller-support.html">Seller Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="shipping.html">Shipping Info</a></li>
+                        <li><a href="returns.html">Returns</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Soma Ko Trade. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modals -->
+    <!-- Pre-Order Modal -->
+    <div id="preOrderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create Pre-Order Request</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="preOrderForm">
+                    <div class="form-group">
+                        <label>Product Name</label>
+                        <input type="text" name="productName" required placeholder="What are you looking for?">
+                    </div>
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select name="category" required>
+                            <option value="">Select Category</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="fashion">Fashion</option>
+                            <option value="home">Home & Garden</option>
+                            <option value="beauty">Beauty & Health</option>
+                            <option value="sports">Sports & Outdoors</option>
+                            <option value="books">Books & Media</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" placeholder="Detailed description of the product you need"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Target Price (GHS)</label>
+                        <input type="number" name="targetPrice" placeholder="Your expected price">
+                    </div>
+                    <div class="form-group">
+                        <label>Quantity</label>
+                        <input type="number" name="quantity" min="1" value="1" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Pre-Order</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Detail Modal -->
+    <div id="productModal" class="modal">
+        <div class="modal-content product-modal">
+            <div class="modal-header">
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body" id="productModalBody">
+                <!-- Product details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cartSidebar" class="cart-sidebar">
+        <div class="cart-header">
+            <h3>Shopping Cart</h3>
+            <span class="cart-close">&times;</span>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: GHS <span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="btn btn-primary btn-full" id="checkoutBtn">
+                <i class="fas fa-credit-card"></i> Checkout
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

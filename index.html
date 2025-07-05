@@ -56,9 +56,20 @@
             <ul class="nav-menu">
                 <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#services" class="nav-link">Services</a></li>
+                <li class="nav-link dropdown">
+                    <span>Platforms <i class="fas fa-chevron-down"></i></span>
+                    <ul class="dropdown-menu">
+                        <li><a href="soma-ko-foods/index.html"><i class="fas fa-utensils"></i> Soma Ko Foods</a></li>
+                        <li><a href="soma-ko-express/index.html"><i class="fas fa-motorcycle"></i> Soma Ko Express</a></li>
+                        <li><a href="soma-ko-pharmacy/index.html"><i class="fas fa-pills"></i> Soma Ko Pharmacy</a></li>
+                        <li><a href="soma-ko-pay/index.html"><i class="fas fa-credit-card"></i> Soma Ko Pay</a></li>
+                        <li><a href="soma-ko-trade/index.html"><i class="fas fa-shopping-bag"></i> Soma Ko Trade</a></li>
+                        <li><a href="soma-ko-dashboard/index.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                    </ul>
+                </li>
                 <li><a href="#about" class="nav-link">About</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><a href="#quote" class="nav-link cta-btn">Get Quote</a></li>
+                <li><a href="shared/login.html" class="nav-link cta-btn">Login</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -76,7 +87,62 @@
                 <p>From domestic errands to e-commerce fulfillment in Winneba & Agona Swedru, we deliver excellence in every logistics service. Your trusted courier and delivery partner across Central Region Ghana.</p>
                 <div class="hero-buttons">
                     <a href="#services" class="btn btn-primary">Our Services</a>
-                    <a href="#contact" class="btn btn-secondary">Contact Us</a>
+                    <div class="hero-dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" id="heroDropdown">
+                            <i class="fas fa-rocket"></i> Access Platforms <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="hero-dropdown-menu" id="heroDropdownMenu">
+                            <a href="soma-ko-foods/index.html" class="dropdown-item">
+                                <div class="dropdown-icon">🍕</div>
+                                <div class="dropdown-content">
+                                    <strong>Soma Ko Foods</strong>
+                                    <p>Order food from restaurants</p>
+                                </div>
+                            </a>
+                            <a href="soma-ko-express/index.html" class="dropdown-item">
+                                <div class="dropdown-icon">🏍️</div>
+                                <div class="dropdown-content">
+                                    <strong>Soma Ko Express</strong>
+                                    <p>Join as a delivery rider</p>
+                                </div>
+                            </a>
+                            <a href="soma-ko-pharmacy/index.html" class="dropdown-item">
+                                <div class="dropdown-icon">💊</div>
+                                <div class="dropdown-content">
+                                    <strong>Soma Ko Pharmacy</strong>
+                                    <p>Order medicines online</p>
+                                </div>
+                            </a>
+                            <a href="soma-ko-pay/index.html" class="dropdown-item">
+                                <div class="dropdown-icon">💳</div>
+                                <div class="dropdown-content">
+                                    <strong>Soma Ko Pay</strong>
+                                    <p>Secure payment gateway</p>
+                                </div>
+                            </a>
+                            <a href="soma-ko-trade/index.html" class="dropdown-item">
+                                <div class="dropdown-icon">🛒</div>
+                                <div class="dropdown-content">
+                                    <strong>Soma Ko Trade</strong>
+                                    <p>E-commerce marketplace</p>
+                                </div>
+                            </a>
+                            <a href="soma-ko-dashboard/index.html" class="dropdown-item">
+                                <div class="dropdown-icon">📊</div>
+                                <div class="dropdown-content">
+                                    <strong>Dashboard</strong>
+                                    <p>Manage your business</p>
+                                </div>
+                            </a>
+                            <a href="shared/login.html" class="dropdown-item login-item">
+                                <div class="dropdown-icon">🔑</div>
+                                <div class="dropdown-content">
+                                    <strong>Login</strong>
+                                    <p>Access your account</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="hero-image">
@@ -159,6 +225,112 @@
                         <a href="ecommerce.html" class="btn btn-primary">Learn More</a>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Digital Platforms Section -->
+            <div class="section-header" style="margin-top: 4rem;">
+                <h2>Our Digital Platforms</h2>
+                <p>Complete digital ecosystem for modern logistics and delivery services</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <h3>Soma Ko Foods</h3>
+                    <p>Food delivery platform connecting restaurants and customers with fast, reliable delivery services.</p>
+                    <ul>
+                        <li>Restaurant partnerships</li>
+                        <li>Real-time tracking</li>
+                        <li>Multiple payment options</li>
+                        <li>Customer reviews</li>
+                    </ul>
+                    <div class="service-link">
+                        <a href="soma-ko-foods/index.html" class="btn btn-primary">Order Food</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-motorcycle"></i>
+                    </div>
+                    <h3>Soma Ko Express</h3>
+                    <p>Delivery agent platform for riders to earn money by delivering orders across the city.</p>
+                    <ul>
+                        <li>Flexible working hours</li>
+                        <li>Instant earnings</li>
+                        <li>Route optimization</li>
+                        <li>Insurance coverage</li>
+                    </ul>
+                    <div class="service-link">
+                        <a href="soma-ko-express/index.html" class="btn btn-primary">Join as Rider</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-pills"></i>
+                    </div>
+                    <h3>Soma Ko Pharmacy</h3>
+                    <p>Online pharmacy platform for convenient medicine ordering and prescription management.</p>
+                    <ul>
+                        <li>Prescription upload</li>
+                        <li>Medicine delivery</li>
+                        <li>Licensed pharmacists</li>
+                        <li>24/7 emergency service</li>
+                    </ul>
+                    <div class="service-link">
+                        <a href="soma-ko-pharmacy/index.html" class="btn btn-primary">Order Medicine</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>Soma Ko Pay</h3>
+                    <p>Secure payment gateway powered by Paystack for all your logistics and delivery payments.</p>
+                    <ul>
+                        <li>Secure transactions</li>
+                        <li>Multiple payment methods</li>
+                        <li>Instant confirmation</li>
+                        <li>Transaction history</li>
+                    </ul>
+                    <div class="service-link">
+                        <a href="soma-ko-pay/index.html" class="btn btn-primary">Make Payment</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <h3>Soma Ko Trade</h3>
+                    <p>Complete e-commerce marketplace for buying and selling products online with pre-order options.</p>
+                    <ul>
+                        <li>Buy & sell products</li>
+                        <li>Pre-order unavailable items</li>
+                        <li>Seller dashboard</li>
+                        <li>Secure transactions</li>
+                    </ul>
+                    <div class="service-link">
+                        <a href="soma-ko-trade/index.html" class="btn btn-primary">Start Shopping</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Access Section -->
+    <section style="background: var(--light-gray); padding: 3rem 0;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quick Access</h2>
+                <p>Jump directly to our platforms and services</p>
+            </div>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="shared/login.html" class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                    <i class="fas fa-sign-in-alt"></i> Login to Platform
+                </a>
+                <a href="soma-ko-dashboard/index.html" class="btn btn-secondary" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                    <i class="fas fa-tachometer-alt"></i> Access Dashboard
+                </a>
             </div>
         </div>
     </section>

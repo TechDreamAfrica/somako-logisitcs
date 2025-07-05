@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soma Ko Pay - Secure Payment Gateway for Ghana</title>
+    <meta name="description" content="Secure payment gateway powered by Paystack for all your logistics and delivery payments in Ghana. Fast, reliable, and trusted payment processing.">
+    <link rel="stylesheet" href="../shared/styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nexa:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --pay-primary: #1e3a8a;
+            --pay-secondary: #3b82f6;
+            --pay-accent: #fbbf24;
+            --pay-dark: #1e293b;
+            --pay-light: #eff6ff;
+        }
+
+        body {
+            font-family: 'Nexa', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--white);
+            color: var(--primary-green);
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: var(--primary-green);
+        }
+        
+        .logo .accent {
+            color: var(--pay-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--primary-green);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--pay-primary);
+        }
+
+        .back-btn {
+            background: var(--primary-green);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-btn:hover {
+            background: var(--pay-primary);
+            transform: translateY(-2px);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--pay-primary) 0%, var(--pay-secondary) 100%);
+            color: var(--white);
+            padding: 8rem 0 4rem;
+            text-align: center;
+            margin-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="payment-pattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><rect x="8" y="10" width="14" height="10" rx="2" fill="rgba(255,255,255,0.06)"/><circle cx="12" cy="15" r="1" fill="rgba(255,255,255,0.08)"/><circle cx="18" cy="15" r="1" fill="rgba(255,255,255,0.08)"/></pattern></defs><rect width="100" height="100" fill="url(%23payment-pattern)"/></svg>');
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .trust-badge {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+
+        .trust-badge i {
+            font-size: 1.5rem;
+            color: var(--pay-accent);
+        }
+        
+        .payment-demo {
+            background: var(--white);
+            padding: 3rem;
+            margin: -3rem auto 0;
+            max-width: 500px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+            position: relative;
+            z-index: 10;
+        }
+
+        .demo-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .demo-header h3 {
+            color: var(--pay-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .demo-amount {
+            background: var(--pay-light);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .amount-input {
+            background: none;
+            border: none;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--pay-primary);
+            text-align: center;
+            width: 100%;
+        }
+
+        .payment-methods {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .payment-method {
+            padding: 1rem;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover,
+        .payment-method.selected {
+            border-color: var(--pay-primary);
+            background: var(--pay-light);
+        }
+
+        .method-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .method-icon {
+            font-size: 1.5rem;
+            color: var(--pay-primary);
+        }
+
+        .demo-btn {
+            background: var(--pay-primary);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .demo-btn:hover {
+            background: var(--pay-secondary);
+            transform: translateY(-2px);
+        }
+
+        .features-section {
+            padding: 6rem 0;
+            background: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--pay-dark);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--pay-primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            color: var(--pay-dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .integration-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .integration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .integration-card {
+            background: var(--pay-light);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .integration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .integration-logo {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--pay-primary);
+        }
+
+        .stats-section {
+            background: var(--pay-dark);
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--pay-accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--primary-green) 0%, var(--light-green) 100%);
+            color: white;
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: var(--pay-primary);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary-green);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .footer {
+            background: var(--pay-dark);
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--pay-accent);
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: var(--pay-accent);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #444;
+            color: #ccc;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .payment-demo {
+                margin: -2rem 1rem 0;
+                padding: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .trust-badges {
+                gap: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                Soma Ko <span class="accent">Pay</span>
+            </div>
+            <div class="nav-links">
+                <a href="#features">Features</a>
+                <a href="#integration">Integration</a>
+                <a href="#demo">Try Demo</a>
+                <a href="../shared/login.html" class="back-btn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </a>
+            </div>
+            <a href="../index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back to Main
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Secure Payments Made Simple</h1>
+            <p>Accept payments securely with Soma Ko Pay, powered by Paystack. Fast, reliable, and trusted payment processing for businesses across Ghana.</p>
+            
+            <div class="trust-badges">
+                <div class="trust-badge">
+                    <i class="fas fa-shield-alt"></i>
+                    <span>Bank-Level Security</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-credit-card"></i>
+                    <span>Multiple Payment Methods</span>
+                </div>
+                <div class="trust-badge">
+                    <i class="fas fa-mobile-alt"></i>
+                    <span>Mobile Money Support</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Payment Demo -->
+    <div class="container">
+        <div class="payment-demo" id="demo">
+            <div class="demo-header">
+                <h3>Try Our Payment Demo</h3>
+                <p style="color: #666; margin: 0;">Experience our secure payment flow</p>
+            </div>
+            
+            <div class="demo-amount">
+                <label style="font-size: 0.9rem; color: #666;">Amount (GHS)</label>
+                <input type="number" class="amount-input" value="50" placeholder="0">
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-method selected">
+                    <div class="method-info">
+                        <div class="method-icon">💳</div>
+                        <div>
+                            <div style="font-weight: 600;">Card Payment</div>
+                            <div style="font-size: 0.85rem; color: #666;">Visa, Mastercard, Verve</div>
+                        </div>
+                    </div>
+                    <i class="fas fa-check-circle" style="color: var(--pay-primary);"></i>
+                </div>
+                
+                <div class="payment-method">
+                    <div class="method-info">
+                        <div class="method-icon">📱</div>
+                        <div>
+                            <div style="font-weight: 600;">Mobile Money</div>
+                            <div style="font-size: 0.85rem; color: #666;">MTN, Vodafone, AirtelTigo</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="payment-method">
+                    <div class="method-info">
+                        <div class="method-icon">🏦</div>
+                        <div>
+                            <div style="font-weight: 600;">Bank Transfer</div>
+                            <div style="font-size: 0.85rem; color: #666;">Direct bank account</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <button class="demo-btn">
+                <i class="fas fa-lock"></i> Pay Securely - Demo
+            </button>
+        </div>
+    </div>
+
+    <!-- Features Section -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Soma Ko Pay?</h2>
+                <p>Powerful payment solutions for modern businesses</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Bank-Level Security</h3>
+                    <p>PCI DSS compliant with 256-bit SSL encryption. Your customers' payment data is always secure and protected.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Instant Settlements</h3>
+                    <p>Get paid instantly with automatic settlements to your bank account. No waiting periods or delays.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile Money Integration</h3>
+                    <p>Accept payments from all major mobile money providers in Ghana - MTN, Vodafone, and AirtelTigo.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Real-time Analytics</h3>
+                    <p>Track payments, monitor performance, and gain insights with our comprehensive dashboard and reporting.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Easy Integration</h3>
+                    <p>Simple APIs and SDKs for quick integration. Get up and running in minutes, not days.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>24/7 Support</h3>
+                    <p>Round-the-clock customer support to help you and your customers with any payment issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Section -->
+    <section class="integration-section" id="integration">
+        <div class="container">
+            <div class="section-header">
+                <h2>Seamless Integration</h2>
+                <p>Connect Soma Ko Pay with your existing systems and platforms</p>
+            </div>
+            <div class="integration-grid">
+                <div class="integration-card">
+                    <div class="integration-logo">🌐</div>
+                    <h4>Web Integration</h4>
+                    <p>Easy HTML/JavaScript integration for websites</p>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">📱</div>
+                    <h4>Mobile Apps</h4>
+                    <p>Native SDKs for iOS and Android applications</p>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">🛒</div>
+                    <h4>E-commerce</h4>
+                    <p>Plugins for WooCommerce, Shopify, and more</p>
+                </div>
+                <div class="integration-card">
+                    <div class="integration-logo">⚡</div>
+                    <h4>REST API</h4>
+                    <p>RESTful APIs for custom integrations</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">₵10M+</span>
+                    <div class="stat-label">Total Payments Processed</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <div class="stat-label">Active Merchants</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.9%</span>
+                    <div class="stat-label">Uptime Guarantee</div>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2.9%</span>
+                    <div class="stat-label">Competitive Fees</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Accepting Payments?</h2>
+            <p>Join hundreds of businesses already using Soma Ko Pay for secure payment processing</p>
+            <div class="cta-buttons">
+                <a href="../shared/login.html" class="btn btn-primary">
+                    <i class="fas fa-rocket"></i> Get Started Free
+                </a>
+                <a href="../soma-ko-foods/index.html" class="btn btn-secondary">
+                    <i class="fas fa-utensils"></i> Order Food
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Soma Ko Pay</h4>
+                    <p>Secure payment gateway powered by Paystack, providing reliable payment processing solutions for businesses across Ghana.</p>
+                    <div style="margin-top: 1rem;">
+                        <i class="fas fa-phone"></i> 0597458456 / 0506618200<br>
+                        <i class="fas fa-envelope"></i> payments@somakologistics.com<br>
+                        <i class="fas fa-shield-alt"></i> PCI DSS Compliant
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>Products</h4>
+                    <ul>
+                        <li><a href="#demo">Payment Gateway</a></li>
+                        <li><a href="#integration">API Documentation</a></li>
+                        <li><a href="#">Mobile SDKs</a></li>
+                        <li><a href="#">E-commerce Plugins</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../shared/login.html">Merchant Portal</a></li>
+                        <li><a href="#">API Documentation</a></li>
+                        <li><a href="#">Transaction Status</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="../index.html#about">About Us</a></li>
+                        <li><a href="../index.html#contact">Contact</a></li>
+                        <li><a href="../privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="../soma-ko-dashboard/index.html">Business Dashboard</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Soma Ko Pay. Part of Soma Ko Logistics. All rights reserved. | Powered by Paystack</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Payment method selection
+        document.querySelectorAll('.payment-method').forEach(method => {
+            method.addEventListener('click', function() {
+                // Remove selected class from all methods
+                document.querySelectorAll('.payment-method').forEach(m => {
+                    m.classList.remove('selected');
+                    m.querySelector('.fas').style.display = 'none';
+                });
+                
+                // Add selected class to clicked method
+                this.classList.add('selected');
+                this.querySelector('.fas').style.display = 'block';
+            });
+        });
+
+        // Demo payment button
+        document.querySelector('.demo-btn').addEventListener('click', function() {
+            const amount = document.querySelector('.amount-input').value;
+            const selectedMethod = document.querySelector('.payment-method.selected .method-info div').textContent;
+            
+            if (!amount || amount <= 0) {
+                alert('Please enter a valid amount');
+                return;
+            }
+            
+            alert(`Demo Payment Initiated!\n\nAmount: GHS ${amount}\nMethod: ${selectedMethod}\n\nThis is a demo. In the live version, you would be redirected to complete the actual payment.`);
+        });
+
+        // Amount input formatting
+        document.querySelector('.amount-input').addEventListener('input', function(e) {
+            let value = e.target.value;
+            if (value && !isNaN(value)) {
+                e.target.value = parseFloat(value).toFixed(2);
+            }
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

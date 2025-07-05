@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - Soma Ko Trade</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../images/soma-ko-logo.png" alt="Soma Ko" onerror="this.outerHTML='<span style=\'font-size: 1.5rem; font-weight: bold; color: var(--primary-green);\'>Soma Ko</span>'">
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Soma Ko Trade</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+
+            <!-- Mobile menu toggle -->
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Checkout Progress -->
+    <div class="checkout-progress">
+        <div class="container">
+            <div class="progress-steps">
+                <div class="step active">
+                    <div class="step-number">1</div>
+                    <span>Cart</span>
+                </div>
+                <div class="step active">
+                    <div class="step-number">2</div>
+                    <span>Checkout</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <span>Payment</span>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <span>Confirmation</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Section -->
+    <section class="checkout-section">
+        <div class="container">
+            <div class="checkout-header">
+                <h1>Checkout</h1>
+                <p>Review your order and complete your purchase</p>
+            </div>
+
+            <div class="checkout-grid">
+                <!-- Checkout Form -->
+                <div class="checkout-form">
+                    <form id="checkoutForm">
+                        <!-- Customer Information -->
+                        <div class="form-section">
+                            <h2><i class="fas fa-user"></i> Customer Information</h2>
+                            <div class="form-grid">
+                                <div class="form-group">
+                                    <label for="firstName">First Name *</label>
+                                    <input type="text" id="firstName" name="firstName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="lastName">Last Name *</label>
+                                    <input type="text" id="lastName" name="lastName" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required>
+                                </div>
+                                <div class="form-group full-width">
+                                    <label for="phone">Phone Number *</label>
+                                    <input type="tel" id="phone" name="phone" required placeholder="+233 XX XXX XXXX">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Information -->
+                        <div class="form-section">
+                            <h2><i class="fas fa-truck"></i> Delivery Information</h2>
+                            <div class="form-grid">
+                                <div class="form-group full-width">
+                                    <label for="address">Delivery Address *</label>
+                                    <textarea id="address" name="address" required placeholder="Enter your full delivery address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="city">City *</label>
+                                    <select id="city" name="city" required>
+                                        <option value="">Select City</option>
+                                        <option value="accra">Accra</option>
+                                        <option value="kumasi">Kumasi</option>
+                                        <option value="takoradi">Takoradi</option>
+                                        <option value="cape-coast">Cape Coast</option>
+                                        <option value="tamale">Tamale</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="region">Region *</label>
+                                    <select id="region" name="region" required>
+                                        <option value="">Select Region</option>
+                                        <option value="greater-accra">Greater Accra</option>
+                                        <option value="ashanti">Ashanti</option>
+                                        <option value="western">Western</option>
+                                        <option value="central">Central</option>
+                                        <option value="northern">Northern</option>
+                                        <option value="eastern">Eastern</option>
+                                        <option value="volta">Volta</option>
+                                        <option value="upper-east">Upper East</option>
+                                        <option value="upper-west">Upper West</option>
+                                        <option value="brong-ahafo">Brong Ahafo</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delivery Options -->
+                        <div class="form-section">
+                            <h2><i class="fas fa-shipping-fast"></i> Delivery Options</h2>
+                            <div class="delivery-options">
+                                <div class="delivery-option">
+                                    <input type="radio" id="standard" name="deliveryType" value="standard" checked>
+                                    <label for="standard">
+                                        <div class="option-header">
+                                            <span class="option-title">Standard Delivery</span>
+                                            <span class="option-price">GH₵ 15</span>
+                                        </div>
+                                        <p class="option-description">3-5 business days</p>
+                                    </label>
+                                </div>
+                                
+                                <div class="delivery-option">
+                                    <input type="radio" id="express" name="deliveryType" value="express">
+                                    <label for="express">
+                                        <div class="option-header">
+                                            <span class="option-title">Express Delivery</span>
+                                            <span class="option-price">GH₵ 25</span>
+                                        </div>
+                                        <p class="option-description">1-2 business days</p>
+                                    </label>
+                                </div>
+                                
+                                <div class="delivery-option" id="sameDayOption" style="display: none;">
+                                    <input type="radio" id="sameday" name="deliveryType" value="sameday">
+                                    <label for="sameday">
+                                        <div class="option-header">
+                                            <span class="option-title">Same Day Delivery</span>
+                                            <span class="option-price">GH₵ 35</span>
+                                        </div>
+                                        <p class="option-description">Available in Accra only</p>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h2><i class="fas fa-credit-card"></i> Payment Method</h2>
+                            <div class="payment-methods">
+                                <div class="payment-option">
+                                    <input type="radio" id="payOnDelivery" name="paymentMethod" value="cash" checked>
+                                    <label for="payOnDelivery">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-money-bill-wave"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <span class="payment-title">Payment on Delivery</span>
+                                            <p class="payment-description">Pay with cash when your order arrives</p>
+                                        </div>
+                                    </label>
+                                </div>
+                                
+                                <div class="payment-option">
+                                    <input type="radio" id="payOnline" name="paymentMethod" value="online">
+                                    <label for="payOnline">
+                                        <div class="payment-icon">
+                                            <i class="fas fa-credit-card"></i>
+                                        </div>
+                                        <div class="payment-info">
+                                            <span class="payment-title">Pay on the Go</span>
+                                            <p class="payment-description">Secure online payment with Soma Ko Pay</p>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="form-section">
+                            <h2><i class="fas fa-sticky-note"></i> Additional Notes (Optional)</h2>
+                            <div class="form-group full-width">
+                                <label for="notes">Special Instructions</label>
+                                <textarea id="notes" name="notes" placeholder="Any special delivery instructions or notes for the seller..."></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <div class="summary-card">
+                        <h2>Order Summary</h2>
+                        
+                        <div id="orderItems" class="order-items">
+                            <!-- Order items will be loaded here -->
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">GH₵ 0</span>
+                        </div>
+                        
+                        <div class="summary-row">
+                            <span>Delivery Fee:</span>
+                            <span id="deliveryFee">GH₵ 15</span>
+                        </div>
+                        
+                        <div class="summary-row discount-row" id="discountRow" style="display: none;">
+                            <span>Discount:</span>
+                            <span id="discount">-GH₵ 0</span>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <div class="summary-row total-row">
+                            <span>Total:</span>
+                            <span id="total">GH₵ 0</span>
+                        </div>
+                        
+                        <!-- Promo Code -->
+                        <div class="promo-code">
+                            <input type="text" id="promoCode" placeholder="Enter promo code">
+                            <button type="button" onclick="applyPromoCode()">Apply</button>
+                        </div>
+                        
+                        <!-- Checkout Button -->
+                        <button type="button" class="btn btn-primary checkout-btn" onclick="placeOrder()">
+                            <i class="fas fa-lock"></i>
+                            Place Order
+                        </button>
+                        
+                        <!-- Security Info -->
+                        <div class="security-info">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Your information is secure and encrypted</span>
+                        </div>
+                        
+                        <!-- Continue Shopping -->
+                        <div class="continue-shopping">
+                            <a href="products.html" class="btn btn-outline">
+                                <i class="fas fa-arrow-left"></i>
+                                Continue Shopping
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Loading Modal -->
+    <div id="loadingModal" class="modal">
+        <div class="modal-content loading-modal-content">
+            <div class="loading-spinner">
+                <div class="spinner"></div>
+                <h3>Processing your order...</h3>
+                <p>Please wait while we prepare your order details.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soma Ko Trade</h3>
+                    <p>Your trusted marketplace for buying and selling across Ghana.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../help.html">Help Center</a></li>
+                        <li><a href="../contact.html">Contact Support</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Soma Ko. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Soma Ko Trade</title>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <a href="../index.html">
+                    <img src="../images/soma-ko-logo.png" alt="Soma Ko" onerror="this.outerHTML='<span style=\'font-size: 1.5rem; font-weight: bold; color: var(--primary-green);\'>Soma Ko</span>'">
+                </a>
+            </div>
+
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Soma Ko Trade</a>
+                <a href="products.html">Products</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+
+            <!-- Mobile menu toggle -->
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Success Section -->
+    <section class="success-section">
+        <div class="container">
+            <!-- Loading State -->
+            <div id="loadingState" class="loading-state">
+                <div class="spinner"></div>
+                <p>Loading order details...</p>
+            </div>
+
+            <!-- Order Not Found -->
+            <div id="orderNotFound" class="order-not-found" style="display: none;">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h2>Order Not Found</h2>
+                <p>We couldn't find the order you're looking for.</p>
+                <a href="products.html" class="btn btn-primary">Continue Shopping</a>
+            </div>
+
+            <!-- Success Content -->
+            <div id="successContent" class="success-content" style="display: none;">
+                <div class="success-header">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h1>Order Confirmed!</h1>
+                    <p>Thank you for your order. We've received your order and will process it soon.</p>
+                </div>
+
+                <div class="success-grid">
+                    <!-- Order Details -->
+                    <div class="order-details-card">
+                        <h2>Order Details</h2>
+                        <div class="order-info">
+                            <div class="info-row">
+                                <span class="label">Order ID:</span>
+                                <span class="value" id="orderIdDisplay">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Order Date:</span>
+                                <span class="value" id="orderDateDisplay">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Payment Method:</span>
+                                <span class="value" id="paymentMethodDisplay">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Delivery Type:</span>
+                                <span class="value" id="deliveryTypeDisplay">-</span>
+                            </div>
+                            <div class="info-row">
+                                <span class="label">Status:</span>
+                                <span class="value status-badge" id="statusDisplay">Pending</span>
+                            </div>
+                        </div>
+
+                        <div class="estimated-delivery">
+                            <h3>Estimated Delivery</h3>
+                            <div class="delivery-estimate">
+                                <i class="fas fa-truck"></i>
+                                <div>
+                                    <strong id="estimatedDate">-</strong>
+                                    <p>We'll send you tracking information once your order ships.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Order Summary -->
+                    <div class="order-summary-card">
+                        <h2>Order Summary</h2>
+                        <div id="orderItemsList" class="order-items">
+                            <!-- Order items will be loaded here -->
+                        </div>
+                        
+                        <div class="summary-totals">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="summarySubtotal">GH₵ 0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Delivery Fee:</span>
+                                <span id="summaryDelivery">GH₵ 0</span>
+                            </div>
+                            <div class="summary-row discount-row" id="summaryDiscountRow" style="display: none;">
+                                <span>Discount:</span>
+                                <span id="summaryDiscount">-GH₵ 0</span>
+                            </div>
+                            <div class="summary-divider"></div>
+                            <div class="summary-row total-row">
+                                <span>Total:</span>
+                                <span id="summaryTotal">GH₵ 0</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Customer Information -->
+                <div class="customer-info-card">
+                    <h2>Customer & Delivery Information</h2>
+                    <div class="info-grid">
+                        <div class="info-section">
+                            <h3><i class="fas fa-user"></i> Customer Details</h3>
+                            <div class="info-content">
+                                <div class="info-row">
+                                    <span class="label">Name:</span>
+                                    <span class="value" id="customerName">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Email:</span>
+                                    <span class="value" id="customerEmail">-</span>
+                                </div>
+                                <div class="info-row">
+                                    <span class="label">Phone:</span>
+                                    <span class="value" id="customerPhone">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="info-section">
+                            <h3><i class="fas fa-map-marker-alt"></i> Delivery Address</h3>
+                            <div class="info-content">
+                                <div class="address-display" id="deliveryAddress">
+                                    <!-- Address will be loaded here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Next Steps -->
+                <div class="next-steps-card">
+                    <h2>What's Next?</h2>
+                    <div class="steps-list">
+                        <div class="step-item">
+                            <div class="step-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="step-content">
+                                <h3>Confirmation Email</h3>
+                                <p>You'll receive a confirmation email with your order details shortly.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="step-content">
+                                <h3>Order Processing</h3>
+                                <p>Our team will prepare your order and get it ready for delivery.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item">
+                            <div class="step-icon">
+                                <i class="fas fa-truck"></i>
+                            </div>
+                            <div class="step-content">
+                                <h3>Delivery Updates</h3>
+                                <p>We'll keep you updated on your delivery status via SMS and email.</p>
+                            </div>
+                        </div>
+
+                        <div class="step-item" id="paymentStep" style="display: none;">
+                            <div class="step-icon">
+                                <i class="fas fa-money-bill-wave"></i>
+                            </div>
+                            <div class="step-content">
+                                <h3>Payment on Delivery</h3>
+                                <p>Have your payment ready when the delivery arrives at your address.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="products.html" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i>
+                        Continue Shopping
+                    </a>
+                    <button class="btn btn-outline" onclick="trackOrder()">
+                        <i class="fas fa-search"></i>
+                        Track Order
+                    </button>
+                    <button class="btn btn-outline" onclick="downloadInvoice()">
+                        <i class="fas fa-download"></i>
+                        Download Invoice
+                    </button>
+                </div>
+
+                <!-- Contact Support -->
+                <div class="support-section">
+                    <h3>Need Help?</h3>
+                    <p>If you have any questions about your order, our support team is here to help.</p>
+                    <div class="support-options">
+                        <a href="../contact.html" class="support-option">
+                            <i class="fas fa-headset"></i>
+                            <span>Contact Support</span>
+                        </a>
+                        <a href="tel:+233123456789" class="support-option">
+                            <i class="fas fa-phone"></i>
+                            <span>Call Us</span>
+                        </a>
+                        <a href="mailto:support@somako.com" class="support-option">
+                            <i class="fas fa-envelope"></i>
+                            <span>Email Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Soma Ko Trade</h3>
+                    <p>Your trusted marketplace for buying and selling across Ghana.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="products.html">All Products</a></li>
+                        <li><a href="seller-dashboard.html">Sell on Soma Ko</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="../help.html">Help Center</a></li>
+                        <li><a href="../terms.html">Terms of Service</a></li>
+                        <li><a href="../privacy.html">Privacy Policy</a></li>
+                        <li><a href="../contact.html">Contact Support</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Soma Ko. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="order-success.js"></script>
+</body>
+</html>

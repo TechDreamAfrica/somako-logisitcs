@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Dashboard - Soma Ko Trade</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Nexa:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <h2>Soma Ko <span>Trade</span> - Seller</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Marketplace</a></li>
+                <li><a href="#dashboard" class="nav-link">Dashboard</a></li>
+                <li><a href="#products" class="nav-link">My Products</a></li>
+                <li><a href="#orders" class="nav-link">Orders</a></li>
+                <li><a href="index.html" class="nav-link">Back to Store</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Dashboard Header -->
+    <section class="dashboard-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="seller-info">
+                    <div class="seller-avatar">
+                        <i class="fas fa-store"></i>
+                    </div>
+                    <div class="seller-details">
+                        <h1>Welcome back, TechStore Ghana!</h1>
+                        <p>Manage your products, orders, and grow your business</p>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <button class="btn btn-primary" id="addProductBtn">
+                        <i class="fas fa-plus"></i> Add Product
+                    </button>
+                    <button class="btn btn-secondary" id="viewAnalyticsBtn">
+                        <i class="fas fa-chart-bar"></i> Analytics
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Stats -->
+    <section id="dashboard" class="dashboard-stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-box"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>45</h3>
+                        <p>Total Products</p>
+                        <span class="stat-change positive">+5 this week</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>128</h3>
+                        <p>Total Orders</p>
+                        <span class="stat-change positive">+12 today</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>GHS 45,600</h3>
+                        <p>Total Revenue</p>
+                        <span class="stat-change positive">+8.5% this month</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3>4.8</h3>
+                        <p>Average Rating</p>
+                        <span class="stat-change positive">+0.2 this month</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Management -->
+    <section id="products" class="products-management">
+        <div class="container">
+            <div class="section-header">
+                <h2>My Products</h2>
+                <div class="section-actions">
+                    <input type="text" placeholder="Search products..." id="productSearch">
+                    <select id="categoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="home">Home & Garden</option>
+                        <option value="beauty">Beauty & Health</option>
+                    </select>
+                </div>
+            </div>
+            <div class="products-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Stock</th>
+                            <th>Sales</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Products will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orders Management -->
+    <section id="orders" class="orders-management">
+        <div class="container">
+            <div class="section-header">
+                <h2>Recent Orders</h2>
+                <div class="section-actions">
+                    <select id="orderStatusFilter">
+                        <option value="">All Orders</option>
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="shipped">Shipped</option>
+                        <option value="delivered">Delivered</option>
+                    </select>
+                </div>
+            </div>
+            <div class="orders-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Products</th>
+                            <th>Total</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody">
+                        <!-- Orders will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add Product Modal -->
+    <div id="addProductModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Product</h3>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="addProductForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Product Name</label>
+                            <input type="text" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Category</label>
+                            <select name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="electronics">Electronics</option>
+                                <option value="fashion">Fashion</option>
+                                <option value="home">Home & Garden</option>
+                                <option value="beauty">Beauty & Health</option>
+                                <option value="sports">Sports & Outdoors</option>
+                                <option value="books">Books & Media</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea name="description" rows="4" required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Price (GHS)</label>
+                            <input type="number" name="price" step="0.01" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Stock Quantity</label>
+                            <input type="number" name="stock" min="0" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Original Price (Optional)</label>
+                            <input type="number" name="originalPrice" step="0.01">
+                        </div>
+                        <div class="form-group">
+                            <label>SKU</label>
+                            <input type="text" name="sku">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Product Images</label>
+                        <input type="file" name="images" multiple accept="image/*">
+                        <small>Upload up to 5 images (JPG, PNG)</small>
+                    </div>
+                    <div class="form-group">
+                        <label>Tags (comma separated)</label>
+                        <input type="text" name="tags" placeholder="smartphone, android, 5g">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="seller-dashboard.js"></script>
+</body>
+</html>

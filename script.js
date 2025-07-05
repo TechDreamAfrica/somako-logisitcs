@@ -359,5 +359,58 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transition = 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
     });
 
+    // Hero Dropdown Functionality
+    const heroDropdown = document.getElementById('heroDropdown');
+    const heroDropdownMenu = document.getElementById('heroDropdownMenu');
+
+    if (heroDropdown && heroDropdownMenu) {
+        heroDropdown.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            heroDropdownMenu.classList.toggle('show');
+            
+            // Rotate the chevron icon
+            const chevron = heroDropdown.querySelector('.fa-chevron-down');
+            if (chevron) {
+                chevron.style.transform = heroDropdownMenu.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+            }
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!heroDropdown.contains(e.target)) {
+                heroDropdownMenu.classList.remove('show');
+                const chevron = heroDropdown.querySelector('.fa-chevron-down');
+                if (chevron) {
+                    chevron.style.transform = 'rotate(0deg)';
+                }
+            }
+        });
+
+        // Prevent dropdown from closing when clicking inside it
+        heroDropdownMenu.addEventListener('click', function(e) {
+            e.stopPropagation();
+        });
+    }
+
+    // Navigation Dropdown Enhancement
+    const navDropdowns = document.querySelectorAll('.nav-link.dropdown');
+    
+    navDropdowns.forEach(dropdown => {
+        const chevron = dropdown.querySelector('.fa-chevron-down');
+        
+        dropdown.addEventListener('mouseenter', function() {
+            if (chevron) {
+                chevron.style.transform = 'rotate(180deg)';
+            }
+        });
+        
+        dropdown.addEventListener('mouseleave', function() {
+            if (chevron) {
+                chevron.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+
     console.log('Soma Ko Logistics website loaded successfully! 🚚');
 });
